@@ -18,7 +18,12 @@ module.exports = {
   async store (ctx) {
     const schema = Joi.object({
       username: Joi.string().required(),
-      password: Joi.string().required()
+      password: Joi.string().required(),
+      first_name: Joi.string().required(),
+      last_name: Joi.string().required(),
+      age: Joi.number().required(),
+      gender: Joi.string().required(),
+      city: Joi.string().required()
     })
 
     try {
