@@ -21,6 +21,10 @@ module.exports = ({ router }) => router
 
   .patch(
     '/',
-    ctx => (ctx.status = 503),
     newsController.patch
+  )
+
+  .delete(
+    '/:id',
+    newsController.delete
   )

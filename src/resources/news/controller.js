@@ -38,5 +38,18 @@ module.exports = {
     } catch (error) {
       ctx.throw(400, error)
     }
+  },
+
+  async delete (ctx) {
+    const schema = Joi.object({ id: Joi.number().required() })
+
+    try {
+      const request = await schema.validateAsync(ctx.request.params)
+      const response = await newsService.delete(request)
+
+      ctx.body = response
+    } catch (error) {
+      ctx.throw(400, error)
+    }
   }
 }
