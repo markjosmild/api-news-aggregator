@@ -7,6 +7,12 @@ const authentication = require('../../middleware/authentication')
 module.exports = ({ router }) => router
   .prefix('/news')
 
+  .get(
+    '/:id',
+    authentication,
+    newsController.pick
+  )
+
   .post(
     '/list',
     authentication,

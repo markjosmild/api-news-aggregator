@@ -30,7 +30,7 @@ module.exports = {
   },
 
   async modify (request) {
-    const [id] = await knex('news').where({ id: request.id }).del()
+    const id = await knex('news').where({ id: request.id }).update(request)
 
     return id
   },

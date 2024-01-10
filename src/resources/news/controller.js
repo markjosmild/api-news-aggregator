@@ -5,6 +5,11 @@ const newsService = require('./service')
 const Joi = require('joi')
 
 module.exports = {
+  async pick (ctx) {
+    const request = ctx.request.params
+    ctx.body = await newsService.list(request)
+  },
+
   async list (ctx) {
     const request = ctx.request.body
     ctx.body = await newsService.list(request)
@@ -28,7 +33,12 @@ module.exports = {
   },
 
   async patch (ctx) {
-    const schema = Joi.object({/* schema here */})
+    const schema = Joi.object({
+      user_id: Joi.number().required(),
+      id: Joi.number().required(),
+      title: Joi.string().required(),
+      content: Joi.string().required()
+    })
 
     try {
       const request = await schema.validateAsync(ctx.request.body)
